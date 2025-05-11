@@ -15,6 +15,7 @@ io(server);
 
 const start = async () => {
   try {
+    console.log(process.env.DB_URL_LIVE, "db url***********");
     mongoDb(process.env.DB_URL);
     console.log("db connected");
     server.listen(process.env.PORT, () =>
