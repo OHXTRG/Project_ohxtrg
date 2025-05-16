@@ -1,13 +1,16 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { authenticate } from "../../actions/authAction";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Signin = () => {
   const auth = useSelector((state) => state.auth);
+  const [loading, setLoading] = useState(false);
   console.log(auth, "auth satate");
   const initialValues = {
     email: "",
@@ -32,6 +35,12 @@ const Signin = () => {
 
   return (
     <>
+      <Backdrop
+        sx={(theme) => ({ color: "#fff", zIndex: theme.zIndex.drawer + 1 })}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Box
         sx={{
           display: "flex",
@@ -49,7 +58,10 @@ const Signin = () => {
           onSubmit={(values) => {
             console.log(values, "values");
             dispatch(
-              authenticate({ email: values.email, password: values.password })
+              authenticate(
+                { email: values.email, password: values.password },
+                "signUp"
+              )
             );
           }}
         >
@@ -65,7 +77,7 @@ const Signin = () => {
                   gap: "20px",
                 }}
               >
-                <Typography component="h2">Sign In</Typography>
+                <Typography component="h2">Sign Up</Typography>
 
                 <TextField
                   id="outlined-basic"

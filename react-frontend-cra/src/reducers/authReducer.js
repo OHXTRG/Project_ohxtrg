@@ -11,6 +11,7 @@ const authReducer = (state = initialState, action) => {
     case "LOGIN":
       return {
         ...state,
+        loading: false,
         token: action.payload.token,
         userData: action.payload.data,
         isAuthenticated: true,
@@ -35,9 +36,12 @@ const authReducer = (state = initialState, action) => {
     case "FETCH_USER_FAILURE":
       return {
         ...state,
+        loading: false,
         error: action.payload,
       };
     default:
       return state;
   }
 };
+
+export default authReducer;

@@ -20,6 +20,7 @@ exports.register = async (req, res) => {
       success: true,
       message: "user created successfully",
       token,
+      data: newUser,
     });
   } catch (e) {
     return res.status(500).json({
@@ -62,6 +63,7 @@ exports.login = async (req, res) => {
       success: true,
       message: "user logged in",
       token,
+      data: user,
     });
   } catch (e) {
     console.log(e);
