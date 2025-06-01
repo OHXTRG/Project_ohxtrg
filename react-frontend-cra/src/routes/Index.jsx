@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ComponentLibIndex from "../pages/componentlib/Home";
 import Signin from "../pages/auth/Signin";
 import SignUp from "../pages/auth/SignUp";
 import Home from "../pages/Home";
 import ProtectedRoute from "../Helper/ProtectedRoute";
+import { useDispatch } from "react-redux";
+import Layout1 from "../components/Layouts/Layout1";
 
-const index = () => {
+const Index = () => {
   return (
     <>
       <Routes>
@@ -17,7 +19,9 @@ const index = () => {
           path="/"
           element={
             <ProtectedRoute>
-              <Home />
+              <Layout1>
+                <Home />
+              </Layout1>
             </ProtectedRoute>
           }
         />
@@ -26,4 +30,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

@@ -10,7 +10,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 const Signin = () => {
   const auth = useSelector((state) => state.auth);
-  const [loading, setLoading] = useState(false);
   console.log(auth, "auth satate");
   const initialValues = {
     email: "",
@@ -37,7 +36,7 @@ const Signin = () => {
     <>
       <Backdrop
         sx={(theme) => ({ color: "#fff", zIndex: theme.zIndex.drawer + 1 })}
-        open={loading}
+        open={auth.loading}
       >
         <CircularProgress color="inherit" />
       </Backdrop>

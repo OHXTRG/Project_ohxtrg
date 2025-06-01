@@ -1,5 +1,12 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  CircularProgress,
+  Backdrop,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { authenticate } from "../../actions/authAction";
@@ -30,8 +37,16 @@ const Signin = () => {
     password: Yup.string().required("password is required"),
   });
 
+  console.log(auth, "auth in ssing in form");
+
   return (
     <>
+      <Backdrop
+        sx={(theme) => ({ color: "#fff", zIndex: theme.zIndex.drawer + 1 })}
+        open={auth.loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Box
         sx={{
           display: "flex",
@@ -49,7 +64,10 @@ const Signin = () => {
           onSubmit={(values) => {
             console.log(values, "values");
             dispatch(
-              authenticate({ email: values.email, password: values.password })
+              authenticate(
+                { email: values.email, password: values.password },
+                "signin"
+              )
             );
           }}
         >

@@ -15,8 +15,8 @@ io(server);
 
 const start = async () => {
   try {
-    console.log(process.env.DB_URL_LIVE, "db url***********");
-    mongoDb(process.env.DB_URL_LIVE);
+    console.log(process.env.DB_URL, "db url***********");
+    mongoDb(process.env.DB_URL);
     console.log("db connected");
     server.listen(process.env.PORT, () =>
       console.log("server is listening to port 8000")

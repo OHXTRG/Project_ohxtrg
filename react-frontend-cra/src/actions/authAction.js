@@ -11,6 +11,8 @@ export const authenticate = (data, api) => async (dispatch) => {
 
     if (response?.data?.success) {
       const data = response.data;
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("data", JSON.stringify(data.data));
       dispatch({
         type: "LOGIN",
         payload: {

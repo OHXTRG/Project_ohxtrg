@@ -1,20 +1,25 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Routes from "./routes";
+import Routes from "./routes/Index";
 import { BrowserRouter } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./reducers";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import StartUp from "./Helper/StartUp";
 
 const store = configureStore({
   reducer: rootReducer,
 });
+
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
+      <StartUp>
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </StartUp>
     </Provider>
   );
 }
